@@ -19,36 +19,27 @@ def run_command(command):
 def print_line():
     print("--------------------------------------------------")
 
-def print_info(command, name):
+def do_work(command, name):
     print_line()
     print(f"Running: {command}")
     print(f"Updating {name}...")
+    print("Before update: ")
     run_command([name, "--version"])
+    print("updating...")
     run_command(command)
+    print("After update: ")
     run_command([name, "--version"])
     print_line()
 
 # Update Bun
-print("Updating Bun...")
-run_command(["bun", "--version"])
-run_command(["bun", "upgrade"])
-run_command(["bun", "--version"])
+do_work(["bun", "--version"], "Bun")
 
 # Update pnpm
-print("Updating pnpm...")
-run_command(["pnpm", "--version"])
-run_command(["pnpm", "self-update"])
-run_command(["pnpm", "--version"])
+do_work(["pnpm", "--version"], "pnpm")
 
-# Update Python and pip
-print("Updating pip...")
-run_command(["pip", "--version"])
-run_command(["pip", "install", "--upgrade", "pip"])
-run_command(["pip", "--version"])
+# Update pip
+do_work(["pip", "--version"], "pip")
 
 # Update Deno
-print("Updating Deno...")
-run_command(["deno", "--version"])
-run_command(["deno", "upgrade"])
-run_command(["deno", "--version"])
+do_work(["deno", "--version"], "Deno")
 
